@@ -1,0 +1,448 @@
+@image-ui-url: url(../img/editor-ui.png);
+
+@image-ui-range-handle-pos: -112px 0;
+@image-ui-range-handle-size: 16px;
+
+@image-ui-wave-width:  44px;
+@image-ui-wave-height: 36px;
+.image-ui-wave-pos (@num, @selected:0) when (@selected = 0) {
+    background-position: -(@image-ui-wave-width * @num) -28px;
+}
+.image-ui-wave-pos (@num, @selected) when (@selected = 1) {
+    background-image: @image-ui-url, @image-ui-url;
+    background-position: -(@image-ui-wave-width * @num) -28px, -(@image-ui-wave-width * 5) -28px;
+}
+
+
+@image-ui-tab-height: 28px;
+@image-ui-tab-width:  56px;
+
+@image-ui-switch-width:  52px;
+@image-ui-switch-height: 20px;
+
+@image-ui-switch-pos:          -56px 0;
+@image-ui-switch-selected-pos: 0 0;
+
+@image-ui-note-length-width:  44px;
+@image-ui-note-length-height: 56px;
+
+.image-ui-note-length-pos (@num, @selected:0) when (@selected = 0) {
+    background-position: (-@image-ui-note-length-width * @num) -100px;
+}
+.image-ui-note-length-pos (@num, @selected) when (@selected = 1) {
+    background-image: @image-ui-url, @image-ui-url;
+    background-position: (-@image-ui-note-length-width * @num) -100px, (-@image-ui-note-length-width * 4) -100px;
+}
+
+@image-ui-volume-default-width:  44px;
+@image-ui-volume-default-height: 36px;
+.image-ui-volume-dafault-pos (@num, @selected:0) when (@selected = 0) {
+    background-position: -(@image-ui-volume-default-width * @num) -64px;
+}
+.image-ui-volume-dafault-pos (@num, @selected) when (@selected = 1) {
+    background-image: @image-ui-url, @image-ui-url;
+    background-position: -(@image-ui-volume-default-width * @num) -64px, -(@image-ui-volume-default-width * 5) -64px;
+}
+
+.image-ui-checkbutton {
+    width:               32px;
+    height:              32px;
+    background-image:    @image-ui-url;
+    background-position: 0 -156px;
+    cursor:              pointer;
+    margin-left:         28px;
+
+    &.selected {
+        background-position: -32px -156px;
+    }
+}
+
+@pico-color-orange:    #FF9300;
+@pico-color-violet:    #70608B;
+@pico-color-black:     #000000;
+@pico-color-yellow:    #FFF300;
+@pico-color-grey:      #B5B6BB;
+@pico-color-dark-grey: #4C453E;
+@pico-color-brown:     #9B3E26;
+@pico-color-white:     #FFEEE2;
+
+@font-face {
+    font-family: 'kongtextregular';
+    src: url('../fnt/kongtext-webfont.eot');
+    src: url('../fnt/kongtext-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fnt/kongtext-webfont.woff2') format('woff2'),
+         url('../fnt/kongtext-webfont.woff') format('woff'),
+         url('../fnt/kongtext-webfont.ttf') format('truetype'),
+         url('../fnt/kongtext-webfont.svg#kongtextregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-smooth: never;
+    -webkit-font-smoothing : none;
+}
+body, html {
+    font-family: 'kongtextregular';
+    color: @pico-color-orange;
+}
+.header {
+    width:      640px;
+    height:     32px;
+    background: @pico-color-orange;
+}
+.editor {
+    width:  640px;
+    height: 576;
+
+    .editor-tracker {
+        * {
+              -webkit-user-select: none;
+              -khtml-user-select:  none;
+              -moz-user-select:    none;
+              user-select:         none;
+
+              cursor: default;
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            width:              100%;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width:         100%;
+            height:        8px;
+            cursor:        pointer;
+            border-top:    4px solid @pico-color-white;
+            border-bottom: 4px solid @pico-color-orange;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance:  none;
+            border:              0;
+            height:              @image-ui-range-handle-size;
+            width:               @image-ui-range-handle-size;
+            background-image:    @image-ui-url;
+            background-position: @image-ui-range-handle-pos;
+            cursor:              pointer;
+            margin-top:          -8px;
+        }
+        textarea, input {
+            outline: none !important;
+        }
+
+        .page {
+            width:      640px;
+            height:     544px;
+            background: @pico-color-violet;
+            position:   relative;
+            display:    none;
+
+            &.selected {
+                display: block;
+            }
+
+            &.sampler {
+                .waveform {
+                    width:       152px; /* 632*/
+                    height:      80px; /* 496 */
+                    background:  @pico-color-black;
+                }
+                .retro-screen {
+                    margin-left: 16px;
+                    margin-top:  64px;
+                }
+                .note-lengths {
+                    position: absolute;
+
+                    left: 404px;
+                    top:  4px;
+
+                    .note-length {
+                        width:               @image-ui-note-length-width;
+                        height:              @image-ui-note-length-height;
+                        background-image:    @image-ui-url;
+                        display:             inline-block;
+                        cursor:              pointer;
+
+                        &[data-length="eight"] {
+                            .image-ui-note-length-pos(0);
+                            &.selected {
+                                .image-ui-note-length-pos(0, 1);
+                            }
+                        }
+                        &[data-length="quarter"] {
+                            .image-ui-note-length-pos(1);
+                            &.selected {
+                                .image-ui-note-length-pos(1, 1);
+                            }
+                        }
+                        &[data-length="half"] {
+                            .image-ui-note-length-pos(2);
+                            &.selected {
+                                .image-ui-note-length-pos(2, 1);
+                            }
+                        }
+                        &[data-length="whole"] {
+                            .image-ui-note-length-pos(3);
+                            &.selected {
+                                .image-ui-note-length-pos(3, 1);
+                            }
+                        }
+
+                    }
+                }
+                .tabs {
+                    width:      600px;
+                    height:     124px;
+                    margin-left: 16px;
+                    margin-top: 8px;
+
+                    .panels {
+                        height:     96px;
+                        width:      600px;
+                        background: @pico-color-yellow;
+                        border:     4px solid @pico-color-orange;
+
+                        .panel {
+                            width:       584px;
+                            height:      80px;
+                            margin-top:  8px;
+                            margin-left: 8px;
+                            display:     none;
+                            position:    relative;
+
+                            .label {
+                                color: @pico-color-brown;
+                                margin-bottom: 0px;
+                            }
+
+                            &.selected {
+                                display: block;
+                            }
+
+                            &[data-panel="wave"] {
+                                .wave-types {
+                                    width:      164px;
+                                    margin-top: -12px;
+
+                                    .label {
+                                        margin-top: 16px;
+
+                                        &.spaced {
+                                            margin-bottom: 16px;
+                                        }
+                                    }
+
+                                    .wave-type {
+                                        width:            @image-ui-wave-width;
+                                        height:           @image-ui-wave-height;
+                                        background-image: @image-ui-url;
+                                        display:          inline-block;
+                                        margin-top:       -8px;
+                                        margin-right:     -12px;
+                                        cursor:           pointer;
+
+                                        // @wave-buttons: sin, square, sawtooth, triangle, noise;
+                                        // .small-buttons (.image-ui-wave-pos, @wave-buttons);
+
+                                        &.sin {
+                                            .image-ui-wave-pos(0);
+                                            &.selected {
+                                                .image-ui-wave-pos(0, 1);
+                                            }
+                                        }
+                                        &.square {
+                                            .image-ui-wave-pos(1);
+                                            &.selected {
+                                                .image-ui-wave-pos(1, 1);
+                                            }
+                                        }
+                                        &.sawtooth {
+                                            .image-ui-wave-pos(2);
+                                            &.selected {
+                                                .image-ui-wave-pos(2, 1);
+                                            }
+                                        }
+                                        &.triangle {
+                                            .image-ui-wave-pos(3);
+                                            &.selected {
+                                                .image-ui-wave-pos(3, 1);
+                                            }
+                                        }
+                                        &.noise {
+                                            .image-ui-wave-pos(4);
+                                            &.selected {
+                                                .image-ui-wave-pos(4, 1);
+                                            }
+                                        }
+                                    }
+                                }
+                                .tuning {
+                                    position: absolute;
+                                    left:     190px;
+                                    width:    160px;
+                                    top:      0px;
+                                }
+                                .fine-tuning {
+                                    position: absolute;
+                                    left:     370px;
+                                    width:    208px;
+                                    top:      0px;
+                                }
+                            }
+                            &[data-panel="volume"] {
+                                .volume-defaults {
+                                    .volume-default {
+                                        width:            @image-ui-volume-default-width;
+                                        height:           @image-ui-volume-default-height;
+                                        background-image: @image-ui-url;
+                                        display:          inline-block;
+                                        margin-top:       -8px;
+                                        margin-right:     -12px;
+                                        cursor:           pointer;
+                                        margin-top:       16px;
+
+
+                                        &[data-default="0"] {
+                                            .image-ui-volume-dafault-pos(0);
+                                            &.selected {
+                                                .image-ui-volume-dafault-pos(0, 1);
+                                            }
+                                        }
+                                        &[data-default="1"] {
+                                            .image-ui-volume-dafault-pos(1);
+                                            &.selected {
+                                                .image-ui-volume-dafault-pos(1, 1);
+                                            }
+                                        }
+                                        &[data-default="2"] {
+                                            .image-ui-volume-dafault-pos(2);
+                                            &.selected {
+                                                .image-ui-volume-dafault-pos(2, 1);
+                                            }
+                                        }
+                                        &[data-default="3"] {
+                                            .image-ui-volume-dafault-pos(3);
+                                            &.selected {
+                                                .image-ui-volume-dafault-pos(3, 1);
+                                            }
+                                        }
+                                        &[data-default="4"] {
+                                            .image-ui-volume-dafault-pos(4);
+                                            &.selected {
+                                                .image-ui-volume-dafault-pos(4, 1);
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                            &[data-panel="pitch"] {
+                                .glide {
+                                    .image-ui-checkbutton;
+                                    margin-left: 20px;
+                                }
+                            }
+                            &[data-panel="tremolo"],
+                            &[data-panel="vibrato"] {
+                                .active {
+                                    .image-ui-checkbutton
+                                }
+
+                                .frequency {
+                                    position: absolute;
+                                    left:     150px;
+                                    width:    210px;
+                                    top:      0px;
+                                }
+                                .depth {
+                                    position: absolute;
+                                    left:     370px;
+                                    width:    208px;
+                                    top:      0px;
+                                }
+                            }
+                            &[data-panel="arpeggio"] {
+                                .active {
+                                    .image-ui-checkbutton
+                                }
+
+                                .notes {
+                                    position: absolute;
+                                    left:     150px;
+                                    width:    210px;
+                                    top:      0px;
+                                }
+                                .speed {
+                                    position: absolute;
+                                    left:     370px;
+                                    width:    208px;
+                                    top:      0px;
+                                }
+                            }
+                            &[data-panel="filter"] {
+                                .active {
+                                    .image-ui-checkbutton
+                                }
+
+                                .frequency {
+                                    position: absolute;
+                                    left:     210px;
+                                    width:    180px;
+                                    top:      0px;
+                                }
+                                .q {
+                                    position: absolute;
+                                    left:     400px;
+                                    width:    180px;
+                                    top:      0px;
+                                }
+                                .depth {
+                                    position: absolute;
+                                    left:     400px;
+                                    width:    180px;
+                                    top:      48px;
+                                }
+                            }
+                            &[data-panel="effects"] {
+                                .reverb {
+                                    .image-ui-checkbutton
+                                }
+                            }
+                        }
+                    }
+                    .tabs-switch {
+                        height:     @image-ui-tab-height;
+                        width:      600px;
+                        margin-bottom: -4px;
+
+                        .switch {
+                            padding-top:         8px;
+                            padding-left:        4px;
+                            width:               @image-ui-switch-width;
+                            height:              @image-ui-switch-height;
+                            background-image:    @image-ui-url;
+                            background-position: @image-ui-switch-pos;
+                            cursor:              pointer;
+                            display:             inline-block;
+                            margin-right:        -12px;
+
+                            &.selected {
+                                background-position: @image-ui-switch-selected-pos;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            &.sfx {
+                .sfxnotes {
+                    width:       128px; /* 512*/
+                    height:      116px; /* 464 */
+                    background:  @pico-color-black;
+                }
+                .retro-screen {
+                    margin-left: 64px;
+                    margin-top:  64px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,397 @@
+.image-ui-checkbutton {
+  width: 32px;
+  height: 32px;
+  background-image: url(../img/editor-ui.png);
+  background-position: 0 -156px;
+  cursor: pointer;
+  margin-left: 28px;
+}
+.image-ui-checkbutton.selected {
+  background-position: -32px -156px;
+}
+@font-face {
+  font-family: 'kongtextregular';
+  src: url('../fnt/kongtext-webfont.eot');
+  src: url('../fnt/kongtext-webfont.eot?#iefix') format('embedded-opentype'), url('../fnt/kongtext-webfont.woff2') format('woff2'), url('../fnt/kongtext-webfont.woff') format('woff'), url('../fnt/kongtext-webfont.ttf') format('truetype'), url('../fnt/kongtext-webfont.svg#kongtextregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+}
+body,
+html {
+  font-family: 'kongtextregular';
+  color: #ff9300;
+}
+.header {
+  width: 640px;
+  height: 32px;
+  background: #ff9300;
+}
+.editor {
+  width: 640px;
+  height: 576;
+}
+.editor .editor-tracker * {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+.editor .editor-tracker input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+}
+.editor .editor-tracker input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  border-top: 4px solid #ffeee2;
+  border-bottom: 4px solid #ff9300;
+}
+.editor .editor-tracker input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 0;
+  height: 16px;
+  width: 16px;
+  background-image: url(../img/editor-ui.png);
+  background-position: -112px 0;
+  cursor: pointer;
+  margin-top: -8px;
+}
+.editor .editor-tracker textarea,
+.editor .editor-tracker input {
+  outline: none !important;
+}
+.editor .editor-tracker .page {
+  width: 640px;
+  height: 544px;
+  background: #70608b;
+  position: relative;
+  display: none;
+}
+.editor .editor-tracker .page.selected {
+  display: block;
+}
+.editor .editor-tracker .page.sampler .waveform {
+  width: 152px;
+  /* 632*/
+  height: 80px;
+  /* 496 */
+  background: #000000;
+}
+.editor .editor-tracker .page.sampler .retro-screen {
+  margin-left: 16px;
+  margin-top: 64px;
+}
+.editor .editor-tracker .page.sampler .note-lengths {
+  position: absolute;
+  left: 404px;
+  top: 4px;
+}
+.editor .editor-tracker .page.sampler .note-lengths .note-length {
+  width: 44px;
+  height: 56px;
+  background-image: url(../img/editor-ui.png);
+  display: inline-block;
+  cursor: pointer;
+}
+.editor .editor-tracker .page.sampler .note-lengths .note-length[data-length="eight"] {
+  background-position: 0px -100px;
+}
+.editor .editor-tracker .page.sampler .note-lengths .note-length[data-length="eight"].selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: 0px -100px, -176px -100px;
+}
+.editor .editor-tracker .page.sampler .note-lengths .note-length[data-length="quarter"] {
+  background-position: -44px -100px;
+}
+.editor .editor-tracker .page.sampler .note-lengths .note-length[data-length="quarter"].selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -44px -100px, -176px -100px;
+}
+.editor .editor-tracker .page.sampler .note-lengths .note-length[data-length="half"] {
+  background-position: -88px -100px;
+}
+.editor .editor-tracker .page.sampler .note-lengths .note-length[data-length="half"].selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -88px -100px, -176px -100px;
+}
+.editor .editor-tracker .page.sampler .note-lengths .note-length[data-length="whole"] {
+  background-position: -132px -100px;
+}
+.editor .editor-tracker .page.sampler .note-lengths .note-length[data-length="whole"].selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -132px -100px, -176px -100px;
+}
+.editor .editor-tracker .page.sampler .tabs {
+  width: 600px;
+  height: 124px;
+  margin-left: 16px;
+  margin-top: 8px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels {
+  height: 96px;
+  width: 600px;
+  background: #fff300;
+  border: 4px solid #ff9300;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel {
+  width: 584px;
+  height: 80px;
+  margin-top: 8px;
+  margin-left: 8px;
+  display: none;
+  position: relative;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel .label {
+  color: #9b3e26;
+  margin-bottom: 0px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel.selected {
+  display: block;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types {
+  width: 164px;
+  margin-top: -12px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .label {
+  margin-top: 16px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .label.spaced {
+  margin-bottom: 16px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type {
+  width: 44px;
+  height: 36px;
+  background-image: url(../img/editor-ui.png);
+  display: inline-block;
+  margin-top: -8px;
+  margin-right: -12px;
+  cursor: pointer;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.sin {
+  background-position: 0px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.sin.selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: 0px -28px, -220px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.square {
+  background-position: -44px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.square.selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -44px -28px, -220px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.sawtooth {
+  background-position: -88px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.sawtooth.selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -88px -28px, -220px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.triangle {
+  background-position: -132px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.triangle.selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -132px -28px, -220px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.noise {
+  background-position: -176px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .wave-types .wave-type.noise.selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -176px -28px, -220px -28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .tuning {
+  position: absolute;
+  left: 190px;
+  width: 160px;
+  top: 0px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="wave"] .fine-tuning {
+  position: absolute;
+  left: 370px;
+  width: 208px;
+  top: 0px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default {
+  width: 44px;
+  height: 36px;
+  background-image: url(../img/editor-ui.png);
+  display: inline-block;
+  margin-top: -8px;
+  margin-right: -12px;
+  cursor: pointer;
+  margin-top: 16px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="0"] {
+  background-position: 0px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="0"].selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: 0px -64px, -220px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="1"] {
+  background-position: -44px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="1"].selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -44px -64px, -220px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="2"] {
+  background-position: -88px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="2"].selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -88px -64px, -220px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="3"] {
+  background-position: -132px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="3"].selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -132px -64px, -220px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="4"] {
+  background-position: -176px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="volume"] .volume-defaults .volume-default[data-default="4"].selected {
+  background-image: url(../img/editor-ui.png), url(../img/editor-ui.png);
+  background-position: -176px -64px, -220px -64px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="pitch"] .glide {
+  width: 32px;
+  height: 32px;
+  background-image: url(../img/editor-ui.png);
+  background-position: 0 -156px;
+  cursor: pointer;
+  margin-left: 28px;
+  margin-left: 20px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="pitch"] .glide.selected {
+  background-position: -32px -156px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="tremolo"] .active,
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="vibrato"] .active {
+  width: 32px;
+  height: 32px;
+  background-image: url(../img/editor-ui.png);
+  background-position: 0 -156px;
+  cursor: pointer;
+  margin-left: 28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="tremolo"] .active.selected,
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="vibrato"] .active.selected {
+  background-position: -32px -156px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="tremolo"] .frequency,
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="vibrato"] .frequency {
+  position: absolute;
+  left: 150px;
+  width: 210px;
+  top: 0px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="tremolo"] .depth,
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="vibrato"] .depth {
+  position: absolute;
+  left: 370px;
+  width: 208px;
+  top: 0px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="arpeggio"] .active {
+  width: 32px;
+  height: 32px;
+  background-image: url(../img/editor-ui.png);
+  background-position: 0 -156px;
+  cursor: pointer;
+  margin-left: 28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="arpeggio"] .active.selected {
+  background-position: -32px -156px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="arpeggio"] .notes {
+  position: absolute;
+  left: 150px;
+  width: 210px;
+  top: 0px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="arpeggio"] .speed {
+  position: absolute;
+  left: 370px;
+  width: 208px;
+  top: 0px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="filter"] .active {
+  width: 32px;
+  height: 32px;
+  background-image: url(../img/editor-ui.png);
+  background-position: 0 -156px;
+  cursor: pointer;
+  margin-left: 28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="filter"] .active.selected {
+  background-position: -32px -156px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="filter"] .frequency {
+  position: absolute;
+  left: 210px;
+  width: 180px;
+  top: 0px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="filter"] .q {
+  position: absolute;
+  left: 400px;
+  width: 180px;
+  top: 0px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="filter"] .depth {
+  position: absolute;
+  left: 400px;
+  width: 180px;
+  top: 48px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="effects"] .reverb {
+  width: 32px;
+  height: 32px;
+  background-image: url(../img/editor-ui.png);
+  background-position: 0 -156px;
+  cursor: pointer;
+  margin-left: 28px;
+}
+.editor .editor-tracker .page.sampler .tabs .panels .panel[data-panel="effects"] .reverb.selected {
+  background-position: -32px -156px;
+}
+.editor .editor-tracker .page.sampler .tabs .tabs-switch {
+  height: 28px;
+  width: 600px;
+  margin-bottom: -4px;
+}
+.editor .editor-tracker .page.sampler .tabs .tabs-switch .switch {
+  padding-top: 8px;
+  padding-left: 4px;
+  width: 52px;
+  height: 20px;
+  background-image: url(../img/editor-ui.png);
+  background-position: -56px 0;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: -12px;
+}
+.editor .editor-tracker .page.sampler .tabs .tabs-switch .switch.selected {
+  background-position: 0 0;
+}
+.editor .editor-tracker .page.sfx .sfxnotes {
+  width: 128px;
+  /* 512*/
+  height: 116px;
+  /* 464 */
+  background: #000000;
+}
+.editor .editor-tracker .page.sfx .retro-screen {
+  margin-left: 64px;
+  margin-top: 64px;
+}

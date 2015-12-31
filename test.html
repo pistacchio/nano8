@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="static/js/retroScreen.js"></script>
+    <script src="static/js/lib/lodash.min.js"></script>
+</head>
+<body>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <script>
+        var FPS = 60;
+
+        var canvas = document.getElementById('canvas');
+        canvas.width  = 640;
+        canvas.height = 480;
+
+        ctx           = canvas.getContext("2d");
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 640, 480);
+        ctx.imageSmoothingEnabled = false;
+
+        var r = new RetroScreen(canvas);
+
+
+        function draw() {
+            setTimeout(function() {
+                requestAnimationFrame(draw);
+                _.times(480, function (y) {
+                    _.times(640, function (x) {
+                        r.setPixel(x, y, [_.random(0, 255, false), _.random(0, 255, false), _.random(0, 255, false)]);
+                    });
+                });
+                r.draw();
+
+            }, 1000 / FPS);
+        }
+
+        draw();
+
+    </script>
+</body>
+</html>
